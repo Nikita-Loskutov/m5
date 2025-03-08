@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    overflow-x: hidden;
+}
+
 header {
     padding: 25px;
     background-color: blue;
@@ -21,30 +26,132 @@ header a {
 
 }
 .nav-button:not(:first-child) {
-    margin-left: 10px;
+    margin-left: 25px;
 }
 
 #burger {
     display: none;
+    transition: all 0.5s;
 }
 
-#burger:hover + .herfs{
+
+#burger:hover {
+    scale: 1.5;
+    color: gray;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 20px;
+
+}
+.card {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card p {
+    padding: 5px;
+}
+.card h2 {
+    padding: 5px;
+    font-size: 20px;
+}
+.card img{
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: top;
+}
+.herfs a:hover {
+    color: rgb(172, 172, 172);
+
+}
+.herfs a{
+    transition: all 0.5s;
+
+}
+
+.card_about{
+    position: absolute;
+    background-color: rgba(26, 26, 26, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    transition: all 0.5s;
     display: flex;
-    right: 0;
-    
+    align-items: center;
+    justify-content: center;
+}
+.card_about a {
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: green;
+    transition: all 1s;
 }
 
+.card_about a:hover {
+    cursor: pointer;
+    background-color: rgb(2, 87, 2);
+
+}
+
+.card:hover .card_about{
+    top:0;
+}
+
+@media screen and (max-width: 768px){
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 16px;
+        grid-row-gap: 16px;
+        padding: 16px;
+    }
+
+}
 @media screen and (max-width: 480px){
     #burger{
         display: block;
     }
     .herfs {
+        display: flex;
         flex-direction: column;
         position: absolute;
         top: 100%;
-        background-color: aqua;
+        background-color: blue;
         right: -100%;
-        transition: all 1s;
+        transition: all 0.5s;
+        gap: 8px;
+        padding: 5px;
+        border-radius:0 0 15px 15px;
+        
     }
+    .herfs a {
+        border: 1px solid gray;
+        border-radius: 10px;
+        padding: 5px;
+    }
+    .herfs a:hover {
+        background-color: rgb(63, 63, 209);
+    
+    }
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 12px;
+        grid-row-gap: 12px;
+        padding: 12px;
+    }
+    .nav-button {
+        margin-left: 0px !important; 
+    }
+
     
 }
