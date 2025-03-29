@@ -1,0 +1,25 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    background: blue;
+}
+
+nav {
+    overflow-x: hidden;
+}
+div{
+    display: flex;
+    transform: translateX(-100%);
+}
+img {
+    width: 50%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+
+}
