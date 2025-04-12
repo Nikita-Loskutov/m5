@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas {
+        border: solid black 1px;
+    }
+    
+
+</style>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+        canvas.width = 500;
+        canvas.height = 500;
+        context.strokeStyle = "red"
+        context.lineWidth = "5"
+
+
+
+        context.beginPath();
+        // context.lineTo(400,100);
+        // context.lineTo(400,400);
+        // context.lineTo(100,400);
+        // context.lineTo(400,100);
+
+        // context.fillStyle = "voilet";
+        // context.beginPath();
+        // context.rect(0,0,200,100);
+        // context.fill()
+
+        context.fillStyle = "voilet";
+        context.beginPath();
+        context.arc(100,100,75,0, Math.PI, 1);
+        context.fill()
+
+        
+
+        context.stroke();
+    </script>
+</body>
+</html>

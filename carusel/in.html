@@ -8,9 +8,9 @@
 </head>
 <body>
     <main>
-        <button>c--</button>
+        <button id="left">c--</button>
         <nav>
-            <div>
+            <div id="carusel">
                 <img src="1.jpg">
                 <img src="2.jpg">
                 <img src="3.jpg">
@@ -18,8 +18,44 @@
                 <img src="5.jpg">
             </div>
         </nav>
-        <button>--э</button>
+        <button id="right">--э</button>
     </main>
 </body>
-<script></script>
+<script>
+    let carusel = document.getElementById("carusel")
+    let left = document.getElementById("left")
+    let right = document.getElementById("right")
+    right.addEventListener("click", clright)
+    left.addEventListener("click", clleft) 
+
+    
+    let count = 2
+    const width = 100 / count 
+    let col = carusel.children.length - count
+    let num = 0
+    for (const i of carusel.children) {
+        i.style.width = width + "%"
+        
+    }
+    function clright() {
+        console.log("click")
+        console.log(num)
+        num += 1
+        if (num >= col) {
+            num = 0
+        }
+        carusel.style.transform = `translateX(-${width*num}%)`
+    }
+    function clleft() {
+        console.log("click")
+        console.log(num)
+        num -= 1
+        if (num <= 0) {
+            num = col
+        }
+        carusel.style.transform = `translateX(-${width*num}%)`
+    }
+
+
+</script>
 </html>

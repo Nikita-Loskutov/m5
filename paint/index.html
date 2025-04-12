@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.4;
+        z-index: -1;
+    }
+  </style>
+  <body>
+    <img src="https://i.pinimg.com/originals/c9/9b/ff/c99bfff8c440078afde0f7b0d2a34041.jpg">
+    <canvas id="canvas"></canvas>
+    
+  </body>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let config = {
+      lineSize: 5,
+      color: "black",
+    };
+
+    let posX = [];
+    let posY = [];
+
+    let draw = false;
+
+    canvas.addEventListener("mousedown", (e) => {
+      draw = true;
+      context.beginPath();
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+      draw = false;
+    });
+
+    canvas.onmousemove = (e) => {
+      mousePos(e);
+    };
+
+    function mousePos(e) {
+      if (draw) {
+        posX.push(e.clientX);
+        posY.push(e.clientY);
+        drawLine(e.clientX, e.clientY);
+      } else {
+        posX.push(false);
+        posY.push(false);
+      }
+    }
+
+    function drawLine(x, y) {
+      context.lineWidth = config.lineSize;
+      context.strokeStyle = config.color;
+      context.lineTo(x, y);
+      context.stroke();
+    }
+
+    function ClearCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function reDraw() {
+      ClearCanvas();
+      posX.splice(-5);
+      posY.splice(-5);
+      for (let i = 0; i < posX.length; i++) {
+        if (posX[i] == false) {
+          context.beginPath();
+        } else {
+          drawLine(posX[i], posY[i]);
+        }
+      }
+    }
+
+    function SaveImage() {
+      const canvasElement = document.getElementById("canvas");
+      const img = canvasElement.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = img;
+      link.download = "mysite.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.code == "KeyC") {
+        ClearCanvas();
+      }
+      if (e.code == "KeyS") {
+        SaveImage();
+      }
+      if (e.code == "KeyZ") {
+        reDraw();
+      }
+    });
+  </script>
+</html>
